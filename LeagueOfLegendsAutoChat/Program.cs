@@ -44,6 +44,7 @@ namespace LeagueOfLegendsAutoChat
         }
         private void OnConfig(object sender, EventArgs e)
         {
+            //OMG SEU NUBA.. vai mesmo instaciar toda vez a classe? DANE O GC MESMO NE
             Form1 f = new Form1();
             f.Show();
         }
