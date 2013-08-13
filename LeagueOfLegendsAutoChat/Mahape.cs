@@ -54,7 +54,15 @@ namespace LeagueOfLegendsAutoChat
 
             r1.Headers.Add("X-Mashape-Authorization", "qUGWvFAocWiav6n3qk37F00ATPzw2osW");
 
-            WebResponse response = r1.GetResponse();
+            WebResponse response;
+            try
+            {
+                response = r1.GetResponse();
+            }catch
+            {
+                return null;
+            }
+            
 
             Stream dataStream = response.GetResponseStream();
             // Open the stream using a StreamReader for easy access.

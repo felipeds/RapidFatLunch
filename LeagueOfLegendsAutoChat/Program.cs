@@ -15,6 +15,7 @@ namespace LeagueOfLegendsAutoChat
         private NotifyIcon trayIcon;
         private ContextMenu trayMenu;
         private LOLScanner scanner;
+        private Mahape mahape;
 
         /// <summary>
         /// The main entry point for the application.
@@ -45,6 +46,9 @@ namespace LeagueOfLegendsAutoChat
             trayIcon.ContextMenu = trayMenu;
             trayIcon.Visible = true;
 
+            //start REST API
+            mahape = new Mahape();
+
             //agora bora scanear pelo LOL
             //essa classe ta tão lixo que tudo que vc precisa fazer é instanciar ela e ela começa a funcionar..
             scanner = new LOLScanner();
@@ -57,7 +61,23 @@ namespace LeagueOfLegendsAutoChat
 
         private void lolwasopened(object sender, EventArgs e)
         {
-            MessageBox.Show("LOL was opened");
+            //agora vamos pegar a lista dos invocadores do seu time
+
+            List<string> l = mahape.getPlayersOnMyTeam();
+
+            string temp = "Seu time é: ";
+            if (l == null)
+            {
+                temp = "Erro ao pegar a lista de invocadores";
+            }
+            else
+            {
+                foreach (string s in l)
+                {
+                    temp += " " + s + "/";
+                }
+            }
+            MessageBox.Show(temp);
         }
 
         private void lolwasClosed(object sender, EventArgs e)
