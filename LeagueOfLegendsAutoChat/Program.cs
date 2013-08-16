@@ -4,7 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
-using System.Drawing; 
+using System.Drawing;
+using System.Net.Http; 
 
 namespace LeagueOfLegendsAutoChat
 {
@@ -31,6 +32,7 @@ namespace LeagueOfLegendsAutoChat
         {
             // Create a simple tray menu with only one item.
             trayMenu = new ContextMenu();
+            trayMenu.MenuItems.Add("login", loginTest);
             trayMenu.MenuItems.Add("Config", OnConfig);
             trayMenu.MenuItems.Add("Exit", OnExit);
 
@@ -46,6 +48,8 @@ namespace LeagueOfLegendsAutoChat
             trayIcon.ContextMenu = trayMenu;
             trayIcon.Visible = true;
 
+            
+
             //start REST API
             mahape = new Mahape();
 
@@ -57,6 +61,15 @@ namespace LeagueOfLegendsAutoChat
             
             
 
+        }
+
+        private async void loginTest(object sender, EventArgs e)
+        {
+            //try direct login
+            PVPNETAPI api = new PVPNETAPI();
+            HttpResponseMessage result = await api.AttemptLoginAsync("INSER_USER_HERE", "INSERT_PWD_HERE", "https://lq.br.lol.riotgames.com/login-queue/rest/queue/authenticate");
+
+            string a = "";//AttemptLoginAsync(txtUsername.Text, txtPassword.Text, serverURI);
         }
 
         private void lolwasopened(object sender, EventArgs e)
