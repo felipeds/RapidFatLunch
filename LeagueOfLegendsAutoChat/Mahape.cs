@@ -51,7 +51,7 @@ namespace LeagueOfLegendsAutoChat
             else
                 teamst = "teamTwo";
             List<string> rv = new List<string>();
-            WebRequest r1 = WebRequest.Create("https://teemojson.p.mashape.com/player/br/kingp1n/ingame");
+            WebRequest r1 = WebRequest.Create("https://teemojson.p.mashape.com/player/br/"+Properties.Settings.Default.summoner+"/ingame");
 
             r1.Headers.Add("X-Mashape-Authorization", "qUGWvFAocWiav6n3qk37F00ATPzw2osW");
 

@@ -57,7 +57,11 @@ namespace LeagueOfLegendsAutoChat
             scanner.LOLOpened += new EventHandler(this.lolwasopened);
             scanner.LOLClosed += new EventHandler(this.lolwasClosed);
             
-            
+            //se não tiver summoner name setado setar abrir a tela e forçar o summoner name
+            if(Properties.Settings.Default.summoner.ToString() == "")
+            {
+                OnConfig(this, EventArgs.Empty);
+            }
 
         }
        
@@ -77,7 +81,7 @@ namespace LeagueOfLegendsAutoChat
             {
                 foreach (string s in l)
                 {
-                    temp += " " + s + "|";
+                    temp += " " + s + " |";
                 }
             }
             MessageBox.Show(temp);
