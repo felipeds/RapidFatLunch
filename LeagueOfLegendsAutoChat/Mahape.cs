@@ -30,7 +30,7 @@ namespace LeagueOfLegendsAutoChat
             //mimimi que lixo vamos ver qual é o meu time
             foreach(string name in teamA)
             {
-                if (name == "kingp1n")
+                if (name == Properties.Settings.Default.summoner)
                     return teamA;
             }
 
