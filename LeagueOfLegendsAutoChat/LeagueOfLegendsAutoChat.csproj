@@ -55,6 +55,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="IngameTO.cs" />
+    <Compile Include="Logger.cs" />
     <Compile Include="LOLScanner\LOLScanner.cs" />
     <Compile Include="Mahape.cs" />
     <Compile Include="Program.cs">

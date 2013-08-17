@@ -51,6 +51,7 @@ namespace LeagueOfLegendsAutoChat
            //start API
             mahape = new Mahape();
 
+
             //agora bora scanear pelo LOL
             //essa classe ta tão lixo que tudo que vc precisa fazer é instanciar ela e ela começa a funcionar..
             scanner = new LOLScanner();
@@ -75,7 +76,7 @@ namespace LeagueOfLegendsAutoChat
             string temp = "Seu time é: ";
             if (l == null)
             {
-                temp = "Erro ao pegar a lista de invocadores";
+                temp = "Erro ao pegar a lista de invocadores.";
             }
             else
             {

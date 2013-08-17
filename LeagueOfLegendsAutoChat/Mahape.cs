@@ -30,12 +30,21 @@ namespace LeagueOfLegendsAutoChat
             //mimimi que lixo vamos ver qual é o meu time
             foreach(string name in teamA)
             {
-                if (name == Properties.Settings.Default.summoner)
+                if (name.ToLower().Equals(Properties.Settings.Default.summoner.ToLower()))
                     return teamA;
             }
 
+            //mimimi que lixo vamos ver qual é o meu time
+            foreach (string name in teamB)
+            {
+                if (name.ToLower().Equals(Properties.Settings.Default.summoner.ToLower()))
+                    return teamB;
+            }
+
+            Logger.LogMessage("Invocador não encontrado em nenhum dos times");
+            return null;
             //se n está no timea a com certeza está no B DUH... meu deus mto tempo sem programar... my code is ugly.
-            return teamB;
+           
 
            
         }
@@ -51,7 +60,7 @@ namespace LeagueOfLegendsAutoChat
             else
                 teamst = "teamTwo";
             List<string> rv = new List<string>();
-            WebRequest r1 = WebRequest.Create("https://teemojson.p.mashape.com/player/br/"+Properties.Settings.Default.summoner+"/ingame");
+            WebRequest r1 = WebRequest.Create("https://teemojson.p.mashape.com/player/br/"+Properties.Settings.Default.summoner.ToLower()+"/ingame");
 
             r1.Headers.Add("X-Mashape-Authorization", "qUGWvFAocWiav6n3qk37F00ATPzw2osW");
 
@@ -61,6 +70,7 @@ namespace LeagueOfLegendsAutoChat
                 response = r1.GetResponse();
             }catch (Exception e)
             {
+                Logger.LogMessage("Erro no getResponse do derver: " + e.ToString());
                 //in case of error  return null
                 return null;
             }
@@ -92,7 +102,8 @@ namespace LeagueOfLegendsAutoChat
             }
             catch (Exception e)
             {
-                string b = e.ToString();
+                Logger.LogMessage("Erro ao ler o JSON do server " + e.ToString());
+               
                 return null;
             }
             return rv;
