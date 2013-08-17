@@ -32,7 +32,7 @@ namespace LeagueOfLegendsAutoChat
         {
             // Create a simple tray menu with only one item.
             trayMenu = new ContextMenu();
-            trayMenu.MenuItems.Add("login", loginTest);
+           // trayMenu.MenuItems.Add("login", loginTest);
             trayMenu.MenuItems.Add("Config", OnConfig);
             trayMenu.MenuItems.Add("Exit", OnExit);
 
@@ -48,9 +48,7 @@ namespace LeagueOfLegendsAutoChat
             trayIcon.ContextMenu = trayMenu;
             trayIcon.Visible = true;
 
-            
-
-            //start REST API
+           //start API
             mahape = new Mahape();
 
             //agora bora scanear pelo LOL
@@ -62,16 +60,8 @@ namespace LeagueOfLegendsAutoChat
             
 
         }
-
-        private async void loginTest(object sender, EventArgs e)
-        {
-            //try direct login
-            PVPNETAPI api = new PVPNETAPI();
-            HttpResponseMessage result = await api.AttemptLoginAsync("INSER_USER_HERE", "INSERT_PWD_HERE", "https://lq.br.lol.riotgames.com/login-queue/rest/queue/authenticate");
-
-            string a = "";//AttemptLoginAsync(txtUsername.Text, txtPassword.Text, serverURI);
-        }
-
+       
+   
         private void lolwasopened(object sender, EventArgs e)
         {
             //agora vamos pegar a lista dos invocadores do seu time
@@ -87,10 +77,12 @@ namespace LeagueOfLegendsAutoChat
             {
                 foreach (string s in l)
                 {
-                    temp += " " + s + "/";
+                    temp += " " + s + "|";
                 }
             }
             MessageBox.Show(temp);
+ 
+         //   MessageBox.Show("LOL WAS OPENED");
         }
 
         private void lolwasClosed(object sender, EventArgs e)

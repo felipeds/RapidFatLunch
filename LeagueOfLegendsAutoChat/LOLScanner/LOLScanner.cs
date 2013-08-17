@@ -38,7 +38,7 @@ namespace LeagueOfLegendsAutoChat
         //O ideal seria fazer um trigger quando a aplicação for lançada e não ficar lendo por ela o tempo todo
         public LOLScanner()
         {
-            isRunning = isLolRunning();
+           // isRunning = isLolRunning();
 
             //ugly code is ugly
             t = new Thread(new ThreadStart(this.run));

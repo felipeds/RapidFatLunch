@@ -25,6 +25,7 @@ namespace LeagueOfLegendsAutoChat
             List<string> teamA = getTeamPlayerNames(1);
             List<string> teamB = getTeamPlayerNames(0);
 
+            if (teamA == null || teamB == null) return null;
 
             //mimimi que lixo vamos ver qual é o meu time
             foreach(string name in teamA)
@@ -42,7 +43,7 @@ namespace LeagueOfLegendsAutoChat
         //TODO: deal with no games existing..
 
         //TODO: encapsular request creation
-        private List<string> getTeamPlayerNames(int team)
+        private List<string> getTeamPlayerNames(int team) 
         {
             string teamst = "";
             if (team == 1)
@@ -58,8 +59,9 @@ namespace LeagueOfLegendsAutoChat
             try
             {
                 response = r1.GetResponse();
-            }catch
+            }catch (Exception e)
             {
+                //in case of error  return null
                 return null;
             }
             
@@ -79,7 +81,9 @@ namespace LeagueOfLegendsAutoChat
             {
                 JToken token = JObject.Parse(responseFromServer);
 
-                for (int i = 0; i <= token["data"]["game"][teamst].Count(); i++)
+                int totalplayers = token["data"]["game"][teamst]["array"].Count();
+
+                for (int i = 0; i < totalplayers; i++)
                 {
                     rv.Add((string)token["data"]["game"][teamst]["array"][i]["summonerInternalName"]);
                 }
@@ -89,6 +93,7 @@ namespace LeagueOfLegendsAutoChat
             catch (Exception e)
             {
                 string b = e.ToString();
+                return null;
             }
             return rv;
 
