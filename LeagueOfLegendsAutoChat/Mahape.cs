@@ -70,7 +70,7 @@ namespace LeagueOfLegendsAutoChat
                 response = r1.GetResponse();
             }catch (Exception e)
             {
-                Logger.LogMessage("Erro no getResponse do derver: " + e.ToString());
+                Logger.LogMessage("Erro no getResponse do server: " + e.ToString());
                 //in case of error  return null
                 return null;
             }
@@ -103,6 +103,7 @@ namespace LeagueOfLegendsAutoChat
             catch (Exception e)
             {
                 Logger.LogMessage("Erro ao ler o JSON do server " + e.ToString());
+                Logger.LogJSON(responseFromServer);
                
                 return null;
             }
