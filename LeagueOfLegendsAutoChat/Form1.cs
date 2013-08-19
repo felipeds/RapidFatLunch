@@ -10,24 +10,17 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 
 
-
-
-
 namespace LeagueOfLegendsAutoChat
 {
 
     public partial class Form1 : Form
     {
-
-        LOLScanner lols;
+   
 
         public Form1()
         {
             InitializeComponent();
-            Mahape m = new Mahape();
-            lols = new LOLScanner();
-            lols.LOLOpened += new EventHandler(this.lolwasopened);
-            lols.LOLClosed += new EventHandler(this.lolwasClosed);
+           
             //Popula a Drop Primeiro senão nao consigo dar o selected value =/
             populaDrop();
 
@@ -42,12 +35,6 @@ namespace LeagueOfLegendsAutoChat
             }
 
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            TSServer.Stop();
-        }
-
 
 
         private void populaDrop()
@@ -73,21 +60,6 @@ namespace LeagueOfLegendsAutoChat
    
         }
 
-        private void lolwasopened(object sender, EventArgs e)
-        {
-            MessageBox.Show("LOL was opened");
-        }
-
-        private void lolwasClosed(object sender, EventArgs e)
-        {
-            MessageBox.Show("LOL was closed");
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-           // TSServer.Start();
-        }
-
         private void button3_Click(object sender, EventArgs e)
         {
             if (txtSummonerName.Text == "")
@@ -102,20 +74,5 @@ namespace LeagueOfLegendsAutoChat
 
         }
 
-        private void cbRegion_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
     }
-
-    public static class WinAPI
-    {
-
-        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = false)]
-
-        public static extern int FindWindow(string lpClassName, string lpWindowName);
-
-    }
-
 }
